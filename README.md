@@ -11,7 +11,7 @@
   <a href="https://github.com/RodrigoOrvate/probebehavior/releases/latest"><img src="https://img.shields.io/github/v/release/RodrigoOrvate/probebehavior" alt="release"></a>
   <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="python 3.9+">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
-  <a href="https://zenodo.org/badge/latestdoi/1442391456"><img src="https://zenodo.org/badge/1442391456.svg" alt="DOI"></a>
+  <a href="https://doi.org/10.5281/zenodo.23888805"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23888805.svg" alt="DOI 10.5281/zenodo.23888805"></a>
 </p>
 
 In a probe test the platform is gone. The first time the animal reaches its former location is the moment its
@@ -100,7 +100,7 @@ pip install git+https://github.com/RodrigoOrvate/probebehavior@v0.1.0
 ```
 
 Or download the source of any release from the [releases page](https://github.com/RodrigoOrvate/probebehavior/releases) or
-its archived copy on [Zenodo](https://zenodo.org/badge/latestdoi/1442391456), and run `pip install .` in the unpacked
+its archived copy on [Zenodo](https://doi.org/10.5281/zenodo.23888805), and run `pip install .` in the unpacked
 folder. From a clone, with the tests:
 
 ```
@@ -113,7 +113,7 @@ pytest
 | | |
 |---|---|
 | Source code | https://github.com/RodrigoOrvate/probebehavior |
-| Archived releases | Zenodo, with a DOI for each version (badge above) |
+| Archived releases | Zenodo, [doi:10.5281/zenodo.23888805](https://doi.org/10.5281/zenodo.23888805) (all versions; each version also has its own DOI) |
 | Requirements | Python 3.9 or later, NumPy, pandas |
 | Tested on | Python 3.9, 3.11 and 3.13 (GitHub Actions, every push) |
 | License | MIT |
@@ -121,8 +121,13 @@ pytest
 
 ## Citation
 
-If you use probebehavior, please cite the archived version you used (DOI on Zenodo; GitHub's "Cite this repository"
-button reads `CITATION.cff`).
+If you use probebehavior, please cite it:
+
+> Orvate R (2026). probebehavior: water maze probe tests aligned on the first arrival at the empty goal. Zenodo.
+> https://doi.org/10.5281/zenodo.23888805
+
+This DOI always resolves to the latest version; the Zenodo page lists the DOI of each version, for citing the exact one
+you used. GitHub's "Cite this repository" button reads `CITATION.cff`.
 
 ## License
 
