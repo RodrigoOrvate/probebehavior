@@ -7,8 +7,22 @@ name = "probebehavior"
 version = "0.1.0"
 description = "Water maze probe tests aligned on the first arrival at the empty goal"
 readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Rodrigo Orvate"}]
+keywords = ["Morris water maze", "probe test", "spatial memory", "behavior", "trajectory analysis", "Rtrack"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
 requires-python = ">=3.9"
 dependencies = ["numpy", "pandas"]
+
+[project.urls]
+Homepage = "https://github.com/RodrigoOrvate/probebehavior"
+Issues = "https://github.com/RodrigoOrvate/probebehavior/issues"
 
 [project.optional-dependencies]
 test = ["pytest"]

@@ -76,6 +76,20 @@ Tracks are delimited text with time (s) and x, y in the arena units (cm); arenas
 ## Install and test
 
 ```
+pip install git+https://github.com/RodrigoOrvate/probebehavior
+```
+
+From a clone, with the tests:
+
+```
 pip install -e ".[test]"
 pytest
 ```
+
+## Citation
+
+If you use probebehavior, please cite it (see `CITATION.cff`; the archived release has a DOI on Zenodo).
+
+## License
+
+MIT.

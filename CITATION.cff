@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use probebehavior, please cite it as below."
+title: "probebehavior: water maze probe tests aligned on the first arrival at the empty goal"
+type: software
+authors:
+  - family-names: Orvate
+    given-names: Rodrigo
+    affiliation: "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"
+version: 0.1.0
+date-released: 2026-11-02
+license: MIT
+repository-code: "https://github.com/RodrigoOrvate/probebehavior"
+keywords:
+  - Morris water maze
+  - probe test
+  - spatial memory
+  - behavior
+  - trajectory analysis

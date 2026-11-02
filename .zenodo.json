@@ -1,0 +1,10 @@
+{
+  "title": "probebehavior: water maze probe tests aligned on the first arrival at the empty goal",
+  "description": "Python package that splits each Morris water maze probe test at the first arrival at the empty goal and measures the search that follows (persistence, re-entries, first stay, distance, speed, turning, time to the wall, visits to equivalent locations), plus the classic probe measures for the whole test and before and after that arrival. Reads and writes Rtrack formats, so the part before the arrival can be classified with Rtrack.",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {"name": "Orvate, Rodrigo", "affiliation": "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"}
+  ],
+  "keywords": ["Morris water maze", "probe test", "spatial memory", "behavior", "trajectory analysis", "Rtrack"]
+}
