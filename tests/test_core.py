@@ -55,6 +55,26 @@ def test_short_windows_are_dropped_when_the_probe_ends_first():
     assert m['reached'] and 'persistence' not in m and c is None
 
 
+def test_partial_window_uses_the_time_left():
+    t, x, y = track([(-50, 0), (50, 0), (50, 0)], [50, 10])  # arrives at 47 s, then stays
+    m, _ = measure(t, x, y, ARENA, Settings(partial_window=True))
+    assert m['window_s'] == pytest.approx(60 - 47, abs=1 / FPS)
+    assert m['persistence'] == 1.0
+    late, _ = measure(*track([(-50, 0), (50, 0), (50, 0)], [63.5, 0.5]), ARENA, Settings(partial_window=True))  # 59.7 s
+    assert 'persistence' not in late  # less than min_window left
+
+
+def test_cli_accepts_partial_window(tmp_path):
+    from probebehavior.cli import main
+    pd = pytest.importorskip('pandas')
+    t, x, y = track([(-50, 0), (50, 0), (50, 0)], [50, 10])
+    pd.DataFrame({'Time': t, 'X': x, 'Y': y}).to_csv(tmp_path / 'r1.csv', index=False)
+    (tmp_path / 'a.txt').write_text('arena.bounds = circle 0 0 100\ngoal = circle 50 0 6\n')
+    pd.DataFrame({'_TrackID': ['r1'], '_Arena': ['a.txt'], '_TrackFile': ['r1.csv']}).to_csv(tmp_path / 'e.csv', index=False)
+    main([str(tmp_path / 'e.csv'), '--partial-window', '--out', str(tmp_path / 'o.csv')])
+    assert pd.read_csv(tmp_path / 'o.csv').persistence.iloc[0] == 1.0
+
+
 def test_rotated_goals_are_the_other_quadrants():
     got = np.round(rotated_goals(ARENA), 6)
     assert got.tolist() == [[0.0, 50.0], [-50.0, 0.0], [0.0, -50.0]]

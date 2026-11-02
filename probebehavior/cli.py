@@ -14,7 +14,11 @@ def main(argv=None):
     p.add_argument('--out', required=True, help='CSV with one row per probe')
     p.add_argument('--curves', help='optional CSV with the aligned curves')
     for f in fields(Settings):
-        p.add_argument(f'--{f.name.replace("_", "-")}', type=float, default=f.default)
+        nome = f'--{f.name.replace("_", "-")}'
+        if f.type in (bool, 'bool'):
+            p.add_argument(nome, action='store_true')
+        else:
+            p.add_argument(nome, type=float, default=f.default)
     a = p.parse_args(argv)
     settings = Settings(**{f.name: getattr(a, f.name) for f in fields(Settings)})
     metrics, curves = measure_experiment(read_rtrack_experiment(a.experiment), settings)

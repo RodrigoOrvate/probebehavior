@@ -23,6 +23,8 @@ class Settings:
     curve_start: float = -5.0       # aligned curves, seconds relative to arrival
     turning_step: float = 0.5       # resampling step for turning
     moving_speed: float = 2.0       # speed above which heading changes count as turning
+    partial_window: bool = False    # late arrivals: use the time left (at least min_window) instead of dropping the short-window measures
+    min_window: float = 1.0
 
 
 def entries(inside):
@@ -57,7 +59,8 @@ def measure(t, x, y, arena, settings=Settings()):
     """Measures of one probe aligned on the first arrival at the goal.
 
     Returns (metrics, curves). `metrics['reached']` is False when the animal never enters the goal; measures that need a
-    full window after arrival are left out when the probe ends before the window does. `curves` holds distance to goal,
+    full window after arrival are left out when the probe ends before the window does, unless `partial_window` is set, in
+    which case the short-window measures use the time left (reported as `window_s`). `curves` holds distance to goal,
     distance to wall and speed on a 1-s grid from `curve_start` to `long_window` around arrival, or is None.
     """
     t, x, y = (np.asarray(v, float) for v in (t, x, y))
@@ -76,14 +79,16 @@ def measure(t, x, y, arena, settings=Settings()):
     m = {'reached': True, 'arrival_latency_s': t0,
          'path_efficiency': min(straight / max(step[:i0].sum(), straight), 1.0)}
 
-    if t0 + s.short_window <= s.duration:
-        w = (t >= t0) & (t < t0 + s.short_window)
+    win = s.short_window if t0 + s.short_window <= s.duration else s.duration - t0
+    if win == s.short_window or (s.partial_window and win >= s.min_window):
+        w = (t >= t0) & (t < t0 + win)
         left = np.flatnonzero(d[i0:] > s.zone_radius)
-        m |= {'persistence': (d[w] <= s.zone_radius).mean(),
+        m |= {'window_s': win,
+              'persistence': (d[w] <= s.zone_radius).mean(),
               'reentries': entries(inside[w]),
               'first_stay_s': (t[i0 + left[0]] - t0) if len(left) else s.duration - t0,
               'mean_distance': d[w].mean(),
-              'speed': step[w[:-1]].sum() / s.short_window,
+              'speed': step[w[:-1]].sum() / win,
               'turning_deg_s': turning_rate(t[w], x[w], y[w], s.turning_step, s.moving_speed)}
 
     curves = None
