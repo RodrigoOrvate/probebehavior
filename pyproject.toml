@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "probebehavior"
+version = "0.1.0"
+description = "Water maze probe tests aligned on the first arrival at the empty goal"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy", "pandas"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+probebehavior = "probebehavior.cli:main"
+
+[tool.setuptools]
+packages = ["probebehavior"]
