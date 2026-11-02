@@ -6,6 +6,9 @@ authors:
   - family-names: Orvate
     given-names: Rodrigo
     affiliation: "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"
+  - family-names: Cammarota
+    given-names: Martín
+    affiliation: "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"
 version: 0.1.0
 doi: 10.5281/zenodo.23888805
 date-released: 2026-11-02

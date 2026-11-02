@@ -4,7 +4,8 @@
   "upload_type": "software",
   "license": "MIT",
   "creators": [
-    {"name": "Orvate, Rodrigo", "affiliation": "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"}
+    {"name": "Orvate, Rodrigo", "affiliation": "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"},
+    {"name": "Cammarota, Martín", "affiliation": "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"}
   ],
   "keywords": ["Morris water maze", "probe test", "spatial memory", "behavior", "trajectory analysis", "Rtrack"]
 }

@@ -123,8 +123,8 @@ pytest
 
 If you use probebehavior, please cite it:
 
-> Orvate R (2026). probebehavior: water maze probe tests aligned on the first arrival at the empty goal. Zenodo.
-> https://doi.org/10.5281/zenodo.23888805
+> Orvate R, Cammarota M (2026). probebehavior: water maze probe tests aligned on the first arrival at the empty goal.
+> Zenodo. https://doi.org/10.5281/zenodo.23888805
 
 This DOI always resolves to the latest version; the Zenodo page lists the DOI of each version, for citing the exact one
 you used. GitHub's "Cite this repository" button reads `CITATION.cff`.
