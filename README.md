@@ -1,6 +1,18 @@
-# probebehavior
+<p align="center">
+  <img src="docs/logo.svg" width="140" alt="probebehavior logo: a path reaching the empty goal in a pool and searching around it">
+</p>
 
-Water maze probe tests aligned on the **first arrival at the empty goal**.
+<h1 align="center">probebehavior</h1>
+
+<p align="center">Water maze probe tests aligned on the <b>first arrival at the empty goal</b>.</p>
+
+<p align="center">
+  <a href="https://github.com/RodrigoOrvate/probebehavior/actions/workflows/tests.yml"><img src="https://github.com/RodrigoOrvate/probebehavior/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
+  <a href="https://github.com/RodrigoOrvate/probebehavior/releases/latest"><img src="https://img.shields.io/github/v/release/RodrigoOrvate/probebehavior" alt="release"></a>
+  <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="python 3.9+">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
+  <a href="https://zenodo.org/badge/latestdoi/1442391456"><img src="https://zenodo.org/badge/1442391456.svg" alt="DOI"></a>
+</p>
 
 In a probe test the platform is gone. The first time the animal reaches its former location is the moment its
 expectation is violated. Standard probe measures (time in the target quadrant, crossings, proximity) summarise the whole
@@ -73,22 +85,44 @@ probebehavior experiment.csv --out probes.csv --curves curves.csv --export-pre-a
 Tracks are delimited text with time (s) and x, y in the arena units (cm); arenas use the Rtrack description
 (`arena.bounds = circle cx cy r`, `goal = circle gx gy r`), so the same files serve both tools.
 
-## Install and test
+## Download and install
+
+With pip, straight from GitHub:
 
 ```
 pip install git+https://github.com/RodrigoOrvate/probebehavior
 ```
 
-From a clone, with the tests:
+A given version, as used in a paper:
+
+```
+pip install git+https://github.com/RodrigoOrvate/probebehavior@v0.1.0
+```
+
+Or download the source of any release from the [releases page](https://github.com/RodrigoOrvate/probebehavior/releases) or
+its archived copy on [Zenodo](https://zenodo.org/badge/latestdoi/1442391456), and run `pip install .` in the unpacked
+folder. From a clone, with the tests:
 
 ```
 pip install -e ".[test]"
 pytest
 ```
 
+## Availability
+
+| | |
+|---|---|
+| Source code | https://github.com/RodrigoOrvate/probebehavior |
+| Archived releases | Zenodo, with a DOI for each version (badge above) |
+| Requirements | Python 3.9 or later, NumPy, pandas |
+| Tested on | Python 3.9, 3.11 and 3.13 (GitHub Actions, every push) |
+| License | MIT |
+| Issues and questions | https://github.com/RodrigoOrvate/probebehavior/issues |
+
 ## Citation
 
-If you use probebehavior, please cite it (see `CITATION.cff`; the archived release has a DOI on Zenodo).
+If you use probebehavior, please cite the archived version you used (DOI on Zenodo; GitHub's "Cite this repository"
+button reads `CITATION.cff`).
 
 ## License
 

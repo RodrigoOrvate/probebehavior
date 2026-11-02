@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="240" height="240">
+  <title>probebehavior</title>
+  <circle cx="60" cy="60" r="52" fill="#eaf2fb" stroke="#1d3557" stroke-width="4"/>
+  <path d="M24 92 C 34 72, 52 58, 75 43" fill="none" stroke="#8a99a8" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 6"/>
+  <circle cx="76" cy="42" r="8" fill="none" stroke="#1d3557" stroke-width="2.5" stroke-dasharray="3 3"/>
+  <path d="M76 42 C 88 34, 98 46, 90 56 C 82 66, 62 60, 64 48 C 66 34, 84 24, 96 33" fill="none" stroke="#e76f51" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="76" cy="42" r="3.5" fill="#e76f51"/>
+</svg>
