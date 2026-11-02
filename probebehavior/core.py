@@ -55,6 +55,53 @@ def rotated_goals(arena, angles=(90, 180, 270)):
     return out
 
 
+def clean(t, x, y, duration):
+    """Drop missing samples and samples after the probe ends."""
+    t, x, y = (np.asarray(v, float) for v in (t, x, y))
+    keep = np.isfinite(t) & np.isfinite(x) & np.isfinite(y) & (t <= duration)
+    return t[keep], x[keep], y[keep]
+
+
+def first_arrival(t, x, y, arena):
+    """Index of the first sample inside the goal, or None if the animal never enters it."""
+    inside = np.hypot(np.asarray(x) - arena.goal[0], np.asarray(y) - arena.goal[1]) <= arena.goal_radius
+    return int(np.argmax(inside)) if inside.any() else None
+
+
+def in_target_quadrant(x, y, arena):
+    """Target quadrant centred on the goal (within 45° of the goal direction, seen from the pool centre), as in Rtrack."""
+    cx, cy = arena.center
+    phi = np.arctan2(np.asarray(y) - cy, np.asarray(x) - cx) - np.arctan2(arena.goal[1] - cy, arena.goal[0] - cx)
+    return np.abs((phi + np.pi) % (2 * np.pi) - np.pi) <= np.pi / 4
+
+
+def classic_measures(t, x, y, arena, settings=Settings()):
+    """Standard probe measures for the whole probe and split at the first arrival (suffixes `_pre` and `_post`).
+
+    `quadrant_pct`: % of time in the target quadrant; `proximity`: mean distance to the goal (Gallagher); `crossings`:
+    entries into the goal (in `_post`, the re-entries after the first arrival); `thigmotaxis_pct`: % of time in the wall
+    band; `duration_s`: length of the segment. Animals that never reach the goal have no `_post` segment.
+    """
+    t, x, y = clean(t, x, y, settings.duration)
+    d = np.hypot(x - arena.goal[0], y - arena.goal[1])
+    r = np.hypot(x - arena.center[0], y - arena.center[1])
+    inside = d <= arena.goal_radius
+    quad = in_target_quadrant(x, y, arena)
+    wall = r >= arena.radius * (1 - settings.wall_fraction)
+    i0 = first_arrival(t, x, y, arena)
+    cut = len(t) if i0 is None else i0
+    out = {}
+    for suffix, part in (('', slice(None)), ('_pre', slice(0, cut)), ('_post', slice(cut, None))):
+        n = len(t[part])
+        ok = n >= 2
+        out |= {f'quadrant_pct{suffix}': 100 * quad[part].mean() if ok else np.nan,
+                f'proximity{suffix}': d[part].mean() if ok else np.nan,
+                f'crossings{suffix}': entries(inside[part]) if ok else np.nan,
+                f'thigmotaxis_pct{suffix}': 100 * wall[part].mean() if ok else np.nan,
+                f'duration_s{suffix}': t[part][-1] - t[part][0] if ok else np.nan}
+    return out
+
+
 def measure(t, x, y, arena, settings=Settings()):
     """Measures of one probe aligned on the first arrival at the goal.
 
@@ -63,9 +110,7 @@ def measure(t, x, y, arena, settings=Settings()):
     which case the short-window measures use the time left (reported as `window_s`). `curves` holds distance to goal,
     distance to wall and speed on a 1-s grid from `curve_start` to `long_window` around arrival, or is None.
     """
-    t, x, y = (np.asarray(v, float) for v in (t, x, y))
-    keep = np.isfinite(t) & np.isfinite(x) & np.isfinite(y) & (t <= settings.duration)
-    t, x, y = t[keep], x[keep], y[keep]
+    t, x, y = clean(t, x, y, settings.duration)
     s = settings
     d = np.hypot(x - arena.goal[0], y - arena.goal[1])
     r = np.hypot(x - arena.center[0], y - arena.center[1])
