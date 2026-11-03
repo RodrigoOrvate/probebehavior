@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.svg" width="140" alt="probebehavior logo: a path reaching the empty goal in a pool and searching around it">
+  <img src="https://raw.githubusercontent.com/RodrigoOrvate/probebehavior/main/docs/logo.svg" width="140" alt="probebehavior logo: a path reaching the empty goal in a pool and searching around it">
 </p>
 
 <h1 align="center">probebehavior</h1>
@@ -8,9 +8,9 @@
 
 <p align="center">
   <a href="https://github.com/RodrigoOrvate/probebehavior/actions/workflows/tests.yml"><img src="https://github.com/RodrigoOrvate/probebehavior/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
-  <a href="https://github.com/RodrigoOrvate/probebehavior/releases/latest"><img src="https://img.shields.io/github/v/release/RodrigoOrvate/probebehavior" alt="release"></a>
+  <a href="https://pypi.org/project/probebehavior/"><img src="https://img.shields.io/pypi/v/probebehavior" alt="PyPI"></a>
   <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="python 3.9+">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
+  <a href="https://github.com/RodrigoOrvate/probebehavior/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
   <a href="https://doi.org/10.5281/zenodo.23888805"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23888805.svg" alt="DOI 10.5281/zenodo.23888805"></a>
 </p>
 
@@ -87,17 +87,20 @@ Tracks are delimited text with time (s) and x, y in the arena units (cm); arenas
 
 ## Download and install
 
-With pip, straight from GitHub:
+With pip, from PyPI:
 
 ```
-pip install git+https://github.com/RodrigoOrvate/probebehavior
+pip install probebehavior
 ```
 
 A given version, as used in a paper:
 
 ```
-pip install git+https://github.com/RodrigoOrvate/probebehavior@v0.1.0
+pip install probebehavior==0.1.1
 ```
+
+Version 0.1.1 has the same code as 0.1.0 (only the package metadata changed). The development version comes straight
+from GitHub: `pip install git+https://github.com/RodrigoOrvate/probebehavior`.
 
 Or download the source of any release from the [releases page](https://github.com/RodrigoOrvate/probebehavior/releases) or
 its archived copy on [Zenodo](https://doi.org/10.5281/zenodo.23888805), and run `pip install .` in the unpacked

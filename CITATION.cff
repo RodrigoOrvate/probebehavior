@@ -9,9 +9,9 @@ authors:
   - family-names: Cammarota
     given-names: Martín
     affiliation: "Brain Institute, Federal University of Rio Grande do Norte, Natal, Brazil"
-version: 0.1.0
+version: 0.1.1
 doi: 10.5281/zenodo.23888805
-date-released: 2026-11-02
+date-released: 2026-11-03
 license: MIT
 repository-code: "https://github.com/RodrigoOrvate/probebehavior"
 keywords:
